@@ -1,13 +1,14 @@
 <script setup>
-import { ref, computed } from "vue";
+import { computed } from "vue";
+import { useStorage } from "@vueuse/core";
 
 const MAX_BINGO_NUMBERS = 10;
 function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-const previousGames = ref([]);
-const drawnNumbers = ref([]);
+const previousGames = useStorage('bingo/previousGames', []);
+const drawnNumbers = useStorage('bingo/drawnNumbers', []);
 
 const hasStartedGame = computed(() => (drawnNumbers.value.length > 0))
 
