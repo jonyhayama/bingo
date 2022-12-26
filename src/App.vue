@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 const MAX_BINGO_NUMBERS = 10;
 function randomIntFromInterval(min, max) {
@@ -7,6 +7,8 @@ function randomIntFromInterval(min, max) {
 }
 
 const drawnNumbers = ref([]);
+
+const hasStartedGame = computed(() => (drawnNumbers.value.length > 0))
 
 const drawNumber = () => {
   if (drawnNumbers.value.length >= MAX_BINGO_NUMBERS) {
@@ -22,13 +24,18 @@ const drawNumber = () => {
   drawnNumbers.value.push(number);
 }
 
+const newGame = () => {
+  drawnNumbers.value = [];
+}
+
 </script>
 
 <template>
   <div>
     <button type="button" @click="drawNumber">Draw Number</button>
+    <button type="button" @click="newGame" v-if="hasStartedGame">New Game</button>
 
-    <ul v-if="drawnNumbers.length > 0">
+    <ul v-if="hasStartedGame">
       <li v-for="number in drawnNumbers">{{ number }}</li>
     </ul>
   </div>
