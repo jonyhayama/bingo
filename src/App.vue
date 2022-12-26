@@ -6,6 +6,7 @@ function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+const previousGames = ref([]);
 const drawnNumbers = ref([]);
 
 const hasStartedGame = computed(() => (drawnNumbers.value.length > 0))
@@ -25,6 +26,7 @@ const drawNumber = () => {
 }
 
 const newGame = () => {
+  previousGames.value.push([ ...drawnNumbers.value ]);
   drawnNumbers.value = [];
 }
 
@@ -38,5 +40,11 @@ const newGame = () => {
     <ul v-if="hasStartedGame">
       <li v-for="number in drawnNumbers">{{ number }}</li>
     </ul>
+
+    <div v-for="game in previousGames">
+      <ul>
+        <li v-for="number in game">{{ number }}</li>
+      </ul>
+    </div>
   </div>
 </template>
