@@ -31,6 +31,10 @@ const newGame = () => {
   drawnNumbers.value = [];
 }
 
+const clearGames = () => {
+  previousGames.value = []
+}
+
 </script>
 
 <template>
@@ -42,10 +46,13 @@ const newGame = () => {
       <li v-for="number in drawnNumbers">{{ number }}</li>
     </ul>
 
-    <div v-for="game in previousGames">
-      <ul>
-        <li v-for="number in game">{{ number }}</li>
-      </ul>
+    <div v-if="previousGames.length > 0">
+      <button type="button" @click="clearGames">Clear Old Games</button>
+      <div v-for="game in previousGames">
+        <ul>
+          <li v-for="number in game">{{ number }}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
