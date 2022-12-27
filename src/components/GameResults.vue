@@ -1,13 +1,18 @@
 <script setup>
-import { defineProps } from 'vue';
+import { defineProps, computed } from 'vue';
 
-defineProps({
+const { game } = defineProps({
   game: Array
+})
+
+const orderedNumbers = computed(() => {
+  const collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
+  return [ ...game ].sort(collator.compare);
 })
 </script>
 
 <template>
   <ul>
-    <li v-for="number in game">{{ number }}</li>
+    <li v-for="number in orderedNumbers">{{ number }}</li>
   </ul>
 </template>
