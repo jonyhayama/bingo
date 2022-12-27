@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from "vue";
 import { useStorage } from "@vueuse/core";
+import GameResults from "./components/GameResults.vue";
 
 const MAX_BINGO_NUMBERS = 10;
 function randomIntFromInterval(min, max) {
@@ -42,16 +43,12 @@ const clearGames = () => {
     <button type="button" @click="drawNumber">Draw Number</button>
     <button type="button" @click="newGame" v-if="hasStartedGame">New Game</button>
 
-    <ul v-if="hasStartedGame">
-      <li v-for="number in drawnNumbers">{{ number }}</li>
-    </ul>
+    <GameResults v-if="hasStartedGame" :game="drawnNumbers" />
 
     <div v-if="previousGames.length > 0">
       <button type="button" @click="clearGames">Clear Old Games</button>
       <div v-for="game in previousGames">
-        <ul>
-          <li v-for="number in game">{{ number }}</li>
-        </ul>
+        <GameResults :game="game" />
       </div>
     </div>
   </div>
