@@ -18,3 +18,29 @@ const orderedNumbers = computed(() => {
     <li v-for="number in orderedNumbers">{{ number }}</li>
   </ul>
 </template>
+
+<style lang="scss">
+ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    list-style: none;
+    margin: 0.25em;
+    background: var(--color);
+    color: var(--background-color);
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &::marker {
+      content: none;
+    }
+  }
+}
+</style>
