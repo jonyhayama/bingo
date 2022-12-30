@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { useStorage } from "@vueuse/core";
 import GameResults from "./components/GameResults.vue";
+import LastNumber from "./components/LastNumber.vue";
 
 const MAX_BINGO_NUMBERS = 10;
 function randomIntFromInterval(min, max) {
@@ -12,6 +13,8 @@ const previousGames = useStorage('bingo/previousGames', []);
 const drawnNumbers = useStorage('bingo/drawnNumbers', []);
 
 const hasStartedGame = computed(() => (drawnNumbers.value.length > 0))
+const lastNumber = computed(() => (hasStartedGame ? drawnNumbers.value.at(-1) : null))
+const currentGame = computed(() => (hasStartedGame ? drawnNumbers.value.slice(0, -1) : []))
 
 const drawNumber = () => {
   if (drawnNumbers.value.length >= MAX_BINGO_NUMBERS) {
@@ -43,7 +46,10 @@ const clearGames = () => {
     <button type="button" @click="drawNumber">Draw Number</button>
     <button type="button" @click="newGame" v-if="hasStartedGame">New Game</button>
 
-    <GameResults v-if="hasStartedGame" :game="drawnNumbers" />
+    <template v-if="hasStartedGame">
+      <LastNumber :number="lastNumber" />
+      <GameResults :game="currentGame" />
+    </template>
 
     <div v-if="previousGames.length > 0">
       <button type="button" @click="clearGames">Clear Old Games</button>
