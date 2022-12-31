@@ -41,11 +41,11 @@ const clearGames = () => {
 <template>
   <div>
     <button type="button" @click="drawNumber">Draw Number</button>
-    <button type="button" @click="newGame" v-if="hasStartedGame">New Game</button>
 
     <template v-if="hasStartedGame">
       <LastNumber :number="lastNumber" />
       <GameResults :game="currentGame" />
+      <button type="button" @click="newGame">New Game</button>
     </template>
 
     <div v-if="previousGames.length > 0">

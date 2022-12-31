@@ -25,8 +25,10 @@ const allNumbers = [...Array(MAX_BINGO_NUMBERS).keys()].map(n => n + 1)
 <style lang="scss">
 ul {
   display: flex;
+  flex-wrap: wrap;
+  width: calc(2.5em * 25);
   list-style: none;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
 
   li {
