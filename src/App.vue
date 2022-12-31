@@ -3,11 +3,7 @@ import { computed } from "vue";
 import { useStorage } from "@vueuse/core";
 import GameResults from "./components/GameResults.vue";
 import LastNumber from "./components/LastNumber.vue";
-
-const MAX_BINGO_NUMBERS = 10;
-function randomIntFromInterval(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min)
-}
+import { MAX_BINGO_NUMBERS, randomIntFromInterval } from "@/util"
 
 const previousGames = useStorage('bingo/previousGames', []);
 const drawnNumbers = useStorage('bingo/drawnNumbers', []);

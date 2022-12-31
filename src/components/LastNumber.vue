@@ -1,11 +1,6 @@
 <script setup>
 import { defineProps, toRefs, ref, watch } from 'vue';
-
-const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
-const MAX_BINGO_NUMBERS = 10;
-function randomIntFromInterval(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min)
-}
+import { MAX_BINGO_NUMBERS, randomIntFromInterval, sleep } from "@/util"
 
 const props = defineProps({
   number: Number
