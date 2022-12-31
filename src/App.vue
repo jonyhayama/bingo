@@ -29,6 +29,7 @@ const drawNumber = () => {
 const newGame = () => {
   previousGames.value.push([ ...drawnNumbers.value ]);
   drawnNumbers.value = [];
+  drawNumber();
 }
 
 const clearGames = () => {
@@ -48,6 +49,8 @@ const clearGames = () => {
     </template>
 
     <div v-if="previousGames.length > 0">
+      <hr />
+      <h2>Old Games</h2>
       <button type="button" @click="clearGames">Clear Old Games</button>
       <div v-for="game in previousGames">
         <GameResults :game="game" />
