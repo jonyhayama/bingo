@@ -1,13 +1,31 @@
 <script setup>
-import { defineProps, computed, toRefs } from 'vue';
+import { defineProps, toRefs, ref, watch } from 'vue';
+
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms))
+const MAX_BINGO_NUMBERS = 10;
+function randomIntFromInterval(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
 
 const props = defineProps({
-  number: Array
+  number: Number
+})
+
+const { number } = toRefs(props);
+const animatedNumber = ref(number.value);
+
+watch(number, async () => {
+  animatedNumber.value = 0;
+  for(var i=1; i<=50; i++) {
+    await sleep(50);
+    animatedNumber.value = randomIntFromInterval(1, MAX_BINGO_NUMBERS);
+  }
+  animatedNumber.value = number.value;
 })
 </script>
 
 <template>
-  <div>{{ number }}</div>
+  <div>{{ animatedNumber }}</div>
 </template>
 
 <style lang="scss" scoped>
