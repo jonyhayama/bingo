@@ -30,7 +30,7 @@ watch(number, async () => {
 
 <style lang="scss" scoped>
 div {
-  font-size: 4em;
+  font-size: 6em;
   background: var(--color);
   color: var(--background-color);
   width: 2em;
@@ -39,6 +39,6 @@ div {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 0.5em auto;
+  margin: 0 auto 0 auto;
 }
 </style>

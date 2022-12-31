@@ -39,14 +39,19 @@ const clearGames = () => {
 </script>
 
 <template>
-  <div>
-    <button type="button" @click="drawNumber">Draw Number</button>
-
-    <template v-if="hasStartedGame">
-      <LastNumber :number="lastNumber" />
-      <GameResults :game="currentGame" />
-      <button type="button" @click="newGame">New Game</button>
-    </template>
+  <div class="container-fluid">
+    <div class="old-games-title">
+      <h1>Bingo</h1>
+      <button type="button" v-if="hasStartedGame" @click="newGame">New Game</button>
+    </div>
+    
+    <div class="main-game">
+      <LastNumber v-if="hasStartedGame" :number="lastNumber" />
+      <button type="button" class="draw-number" @click="drawNumber">
+        {{ hasStartedGame ? 'Draw Number' : 'New Game' }}
+      </button>
+      <GameResults v-if="hasStartedGame" :game="currentGame" />
+    </div>
 
     <div v-if="previousGames.length > 0">
       <hr />
@@ -69,7 +74,7 @@ const clearGames = () => {
   margin-bottom: 2em;
   align-items: center;
 
-  h2 {
+  h1, h2 {
     margin: 0;
   }
 
@@ -81,5 +86,19 @@ const clearGames = () => {
     border-radius: 1em;
     margin: 0;
   }
+}
+
+.draw-number {
+  max-width: 10em;
+  margin: 2em auto;
+}
+
+.main-game {
+  height: calc(100vh - 2rem - 4em);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 </style>

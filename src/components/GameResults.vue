@@ -26,7 +26,7 @@ const allNumbers = [...Array(MAX_BINGO_NUMBERS).keys()].map(n => n + 1)
 ul {
   display: flex;
   flex-wrap: wrap;
-  width: calc(2.5em * 25);
+  width: calc(3.15em * 25);
   list-style: none;
   margin: 0 auto;
   padding: 0;
@@ -42,6 +42,7 @@ ul {
     align-items: center;
     justify-content: center;
     transition: all .3s ease-in-out;
+    font-size: 1.25em;
 
     &::marker {
       content: none;
