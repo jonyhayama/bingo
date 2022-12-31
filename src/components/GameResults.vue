@@ -1,5 +1,6 @@
 <script setup>
 import { defineProps, computed, toRefs } from 'vue';
+import { formatNumber } from "@/util";
 
 const props = defineProps({
   game: Array
@@ -15,7 +16,7 @@ const orderedNumbers = computed(() => {
 
 <template>
   <ul>
-    <li v-for="number in orderedNumbers">{{ number }}</li>
+    <li v-for="number in orderedNumbers">{{ formatNumber(number) }}</li>
   </ul>
 </template>
 

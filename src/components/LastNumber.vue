@@ -1,6 +1,11 @@
 <script setup>
 import { defineProps, toRefs, ref, watch } from 'vue';
-import { MAX_BINGO_NUMBERS, randomIntFromInterval, sleep } from "@/util"
+import { 
+  MAX_BINGO_NUMBERS,
+  randomIntFromInterval,
+  sleep,
+  formatNumber
+} from "@/util"
 
 const props = defineProps({
   number: Number
@@ -20,7 +25,7 @@ watch(number, async () => {
 </script>
 
 <template>
-  <div>{{ animatedNumber }}</div>
+  <div>{{ formatNumber(animatedNumber) }}</div>
 </template>
 
 <style lang="scss" scoped>
