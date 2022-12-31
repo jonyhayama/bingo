@@ -50,11 +50,36 @@ const clearGames = () => {
 
     <div v-if="previousGames.length > 0">
       <hr />
-      <h2>Old Games</h2>
-      <button type="button" @click="clearGames">Clear Old Games</button>
+      <div class="old-games-title">
+        <h2>Old Games</h2>
+        <button class="outline" type="button" @click="clearGames">Clear</button>
+      </div>
       <div v-for="game in previousGames">
         <GameResults :game="game" />
+        <hr />
       </div>
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.old-games-title {
+  display: flex;
+  gap: 0.5em;
+  margin-bottom: 2em;
+  align-items: center;
+
+  h2 {
+    margin: 0;
+  }
+
+  button {
+    width: auto;
+    height: auto;
+    font-size: 0.75em;
+    padding: 0 0.75em;
+    border-radius: 1em;
+    margin: 0;
+  }
+}
+</style>
