@@ -46,11 +46,13 @@ const clearGames = () => {
     </div>
     
     <div class="main-game">
-      <LastNumber v-if="hasStartedGame" :number="lastNumber" />
-      <button type="button" class="draw-number" @click="drawNumber">
-        {{ hasStartedGame ? 'Draw Number' : 'New Game' }}
-      </button>
-      <GameResults v-if="hasStartedGame" :game="currentGame" />
+      <div>
+        <LastNumber v-if="hasStartedGame" :number="lastNumber" />
+        <button type="button" class="draw-number" @click="drawNumber">
+          {{ hasStartedGame ? 'Draw Number' : 'New Game' }}
+        </button>
+        <GameResults v-if="hasStartedGame" :game="currentGame" />
+      </div>
     </div>
 
     <div v-if="previousGames.length > 0">
@@ -94,7 +96,7 @@ const clearGames = () => {
 }
 
 .main-game {
-  height: calc(100vh - 2rem - 4em);
+  min-height: calc(100vh - 2rem - 4em);
   display: flex;
   align-items: center;
   justify-content: center;
